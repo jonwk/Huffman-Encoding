@@ -139,11 +139,9 @@ char *int_to_binary_str(int path, int code_length)
   {
     digit = path >> c;
 
-    if (digit & 1)
-      *(binary_str + temp) = 1 + '0';
-    else
-      *(binary_str + temp) = 0 + '0';
-
+    if (digit & 1)  *(binary_str + temp) = 1 + '0';
+    else            *(binary_str + temp) = 0 + '0';
+    
     temp++;
   }
   *(binary_str + temp) = '\0';
