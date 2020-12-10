@@ -24,17 +24,11 @@ void huffcoder_count(struct huffcoder *this, char *filename)
   while (temp != EOF)
   {
     temp = fgetc(file);
-    if (temp != EOF)
-    {
-      this->freqs[temp]++;
-    }
+    if (temp != EOF)  { this->freqs[temp]++; }
   }
   for (int i = 0; i < NUM_CHARS; i++)
   {
-    if (this->freqs[i] == 0)
-    {
-      this->freqs[i] = 1;
-    }
+    if (this->freqs[i] == 0)  { this->freqs[i] = 1; }
   }
   fclose(file);
 }
@@ -96,10 +90,7 @@ int treeSize(struct huffchar *tree[NUM_CHARS])
   int size = 0;
   for (int i = 0; i < NUM_CHARS; i++)
   {
-    if (tree[i] != NULL)
-    {
-      size++;
-    }
+    if (tree[i] != NULL)  { size++; }
   }
   return size;
 }
@@ -144,9 +135,6 @@ char *int_to_binary_str(int path, int code_length)
   int temp = 0;
   binary_str = (char *)malloc(NUM_CHARS + 1);
 
-  if (binary_str == NULL)
-    exit(EXIT_FAILURE);
-
   for (int c = code_length - 1; c >= 0; c--)
   {
     digit = path >> c;
@@ -176,7 +164,6 @@ void tree2table_recursive(struct huffcoder *this, struct huffchar *node, int pat
   {
     unsigned char index = node->u.c;
     this->code_lengths[(unsigned int)index] = depth;
-
     this->codes[(unsigned int)index] = int_to_binary_str(path, depth);
   }
 }
